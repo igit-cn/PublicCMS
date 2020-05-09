@@ -1,159 +1,102 @@
-#PublicCMS
+# PublicCMS V4.0
 
-<a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=8a633f84fb2475068182d3c447319977faca6a14dc3acf8017a160d65962a175"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="Public CMS" title="Public CMS"/></a>
+<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=89ffe8cd3abc04f6794965a330b0a278fdbc31f53e46fd5ee1c4f54ed43a6b28">交流群1群 191381542</a>
+<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=088c921c4eb74328eef0192bac1e63c7228eb31b0524a373d40cdd907ddd2d3c">交流群2群 481589563</a>
+<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=8b1c7e07973d9f9553c0b8d5f8410107c02456bf6b4674dc7e4d113266ee8e03">交流群3群 638756883</a>
 
-##简介
+## 简介
 
-PublicCMS是采用2016年最新主流技术开发的免费开源JAVACMS系统。商用免费，架构科学。无需任何数据库优化，即可支持上千万数据；支持全站静态化，动态页面缓存，SSI，0xml配置，扩展指令自动加载等为您快速建站，建设大规模站点提供强大驱动，也是企业级项目产品原型的良好选择。
+PublicCMS是采用2020年最新主流技术开发的开源JAVACMS系统。架构科学，轻松支持上千万数据、千万PV；支持全站静态化，SSI，动态页面局部静态化等为您快速建站，建设大规模站点提供强大驱动，也是企业级项目产品原型的良好选择。
 
-##获取可运行程序
+## 获取源码
 
-http://git.oschina.net/sanluan/PublicCMS-war
+https://gitee.com/sanluan/PublicCMS
+https://github.com/sanluan/PublicCMS
 
-https://github.com/sanluan/PublicCMS-war
+## 参与开发
 
-##参与研发(预览版)
+切换到develop分支
 
-http://git.oschina.net/sanluan/PublicCMS-preview
+## 授权协议
 
-https://github.com/sanluan/PublicCMS-preview
+* 版本:V4.0 商用付费授权协议:详情参见LICENSE
+* 版本:V1.0,V2016,V2017 完全免费授权协议:MIT
 
-##相关下载及文档(知识库)
+## 环境要求
 
-https://github.com/sanluan/PublicCMS-lib
+* jdk或jre 1.8 及以上
+* mysql 5.5 及以上
 
-https://git.oschina.net/sanluan/PublicCMS-lib
+## 目录说明
 
-##授权
+* data\publiccms	PublicCMS数据目录
+* doc			文档
+* publiccms-parent	工程源码
 
-该软件永久开源免费(MIT 授权协议)
+## 快速编译与运行
 
-##结构说明
+* 编译运行
 
-* publiccms-by-gradle 为Gradle管理的工程，publiccms-by-maven为Maven管理的工程，两个工程中源码是一样的
-* data/publiccms 为PublicCMS的 数据目录
-* database/Database Init.sql 为数据库初始化脚本，Database Change Log.sql 为数据库变更记录
+保证操作系统中有jdk1.8及以上
+```
+cd publiccms-parent
+mvnw clean package
+cd publiccms/target
+java -jar publiccms.war
+```
+访问程序页面http://localhost:8080/publiccms/ ,根据页面提示配置并初始化数据库
+管理后台访问相对路径为http://localhost:8080/publiccms/admin/ ,数据脚本内置管理员账号/密码:admin/admin
+* 直接下载网盘中可执行程序(https://www.publiccms.com/download.html)
+本地准备java,mysql环境,下载可执行程序压缩解压缩后运行startup.bat或startup.sh
 
-##部署运行
+## 定制运行方式
 
-![](preview/rt.jpg)
-* 根据文档部署工程
-* 数据脚本内置管理员账号admin，密码admin
+* windows启动命令
 
-##演示
+```
+java -jar -Dcms.port=8080 -Dcms.contextPath=/publiccms -Dcms.filePath="%cd%\data\publiccms" publiccms.war
+```
+* linux启动命令
+```
+java -jar -Dcms.port=8080 -Dcms.contextPath=/publiccms -Dcms.filePath="`pwd`/data/publiccms" publiccms.war
+```
+更多参数及含义请参考部署手册
 
-* 演示站点：http://www.publiccms.com/
-* 动态站点演示：http://cms.publiccms.com/
-* 后台演示：http://cms.publiccms.com/admin/ 账号/密码 test/test
-* 接口演示：http://cms.publiccms.com/interface.html
+* tomcat中运行
+将publiccms.war.original重命名为publiccms.war或ROOT.war(上下文路径为/),移动文件到tomcat的webapps目录下,此时-Dcms.filePath参数依旧有效
+* docker中运行
+直接执行:
+```
+docker run -d -p 8080:8080 sanluan/publiccms
 
-##更新记录
+```
+自行构建镜像:执行
+```
+docker build -t mypubliccms .
+docker run -d -p 8080:8080 mypubliccms
 
-V2016.0510更新：
+```
+更多参数及含义请参考 https://hub.docker.com/r/sanluan/publiccms/
 
-1. 动态站点新增分类保存500错误bug修复
-1. 分类类型不能删除bug修复
-1. 新增分类推荐，页面推荐
-1. RenderHandler新增char类型处理
+## 演示
 
-V2016.0423更新
+* 演示站点：https://www.publiccms.com/
+* 后台演示：https://cms.publiccms.com/admin/ 演示账号/密码 test/test
+* 接口演示：https://cms.publiccms.com/interface.html
 
-1. 前台站点增加登陆注册功能，友情链接提交功能
-1. 网站模板取消使用SSI与不使用SSI的差异化
-1. 后台删除模板时元数据未被删除bug修复
-1. 后台任务计划生成静态化失败bug修复
 
-V2016新增功能：
+## Public CMS架构图
 
-1. 新增动态模板在线编辑功能
-1. 新增内容推荐
-1. 新增内容附件列表
-1. 新增内容移动功能
-1. 新增内容刷新功能
-1. 新增分类移动功能
-1. 新增分类生成多页功能
-1. 新增分类标签类型管理
-1. 新增分类SEO优化设置
-1. 新增页面元数据扩展功能
-1. 新增支持FreeMarker与HTML语法混合的模板编辑器
-1. 新增动态页面管理功能
-1. 新增推荐位数据扩展功能
-1. 新增动态模板可接受参数配置功能
-1. 新增用户登录授权管理功能
-1. 新增部门数据权限功能：页面权限，分类权限
-1. 新增角色只读权功能，修复权限授权bug
-1. 新FTP服务、FTP用户在线管理功能
-1. 新增动态域名绑定管理功能
-1. 新增站点管理功能
-1. 新增分类，模块等排序功能
-1. 新增应用授权功能
-1. 新增定制接口及测试页面
-1. 新增客户端管理
+![](doc/structure.png)
 
-优化修改:
+## Public CMS管理后台
 
-1. 任务计划脚本改为文件
-1. 推荐位数据改为数据库存储
-1. UI列表样式修改，性能优化
-1. UI美观度提升，图标优化
-1. 模板与工程彻底分离
-1. 登陆超时改为弹出登陆对话框
-1. 指令简化
+![](doc/management.png)
 
-##系统后台截图
+## Public CMS Management
 
-###工作台
+![](doc/management_en.png)
 
-![](preview/1.jpg)
-###内容列表
+## Public CMS 管理バックグラウンド
 
-![](preview/2.jpg)
-###内容管理
-
-![](preview/3.jpg)
-###内容编辑
-
-编辑器为百度编辑器，支持定时发布等功能
-![](preview/4.jpg)
-###图集编辑
-
-![](preview/5.jpg)
-###分类编辑
-
-分类支持无限自定义字段扩展
-
-![](preview/6.jpg)
-###页面元数据管理
-
-![](preview/7.jpg)
-###页面推荐位管理
-
-![](preview/8.jpg)
-###页面推荐位编辑
-
-![](preview/9.jpg)
-###模板在线编辑
-
-通过模板的include和SSI(服务器端包含)实现模板片段，页面片段的最大程度复用，模板编辑器支持FreeMarker语法与html混合高亮显示
-![](preview/10.jpg)
-###模板元数据管理
-
-![](preview/11.jpg)
-###部门编辑
-
-![](preview/12.jpg)
-###角色编辑
-
-![](preview/13.jpg)
-###内容模型编辑
-
-![](preview/14.jpg)
-###任务计划编辑
-
-![](preview/15.jpg)
-###任务计划日志查看
-
-![](preview/16.jpg)
-###日志管理
-
-![](preview/17.jpg)
+![](doc/management_ja.png)
